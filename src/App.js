@@ -22,6 +22,11 @@ class App extends Component {
     const data=await api_call.json();
     console.log(data)
     if(city && country){
+      if(data.cod==404){
+        this.setState({
+          error:'Please Give a Correct Input'
+        })
+      }else{
     this.setState({
        temperature:data.main.temp,
       city:data.name,
@@ -30,9 +35,10 @@ humidity:data.main.humidity,
 description:data.weather[0].description,
 error:""
     })
+  }
   }else{
     this.setState({
-      error:'Please select a value'
+      error:'Please Give an Input'
     })
   }
     
